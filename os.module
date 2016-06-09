@@ -1,0 +1,40 @@
+<?php
+
+/**
+ * Implements hook_menu().
+ */
+function os_menu() {
+  $items['os'] = array(
+    'title' => 'S\'inscrire',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('os_form'),
+    'description' => 'Account request form.',
+    'access callback' => TRUE,
+    'file' => 'os.pages.inc',
+    'type' => MENU_NORMAL_ITEM,
+  );
+
+  $items['admin/user/os'] = array(
+    'title' => 'Gestion des inscriptions',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('os_list_form'),
+    'description' => 'Administer account request.',
+    'access callback' => TRUE,
+    'file' => 'os.admin.inc',
+    'type' => MENU_NORMAL_ITEM,
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_theme().
+ */
+function os_theme() {
+  return array(
+    'os_list_form' => array(
+      'arguments' => array('form' => NULL),
+      'file' => 'os.admin.inc',
+    ),
+  );
+}
